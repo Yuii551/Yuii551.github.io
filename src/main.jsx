@@ -2,13 +2,10 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowUpRight,
-  Code2,
   Mail,
   Github,
   Linkedin,
-  Sparkles,
   TerminalSquare,
-  Wrench,
 } from 'lucide-react';
 import BrewBakeCaseStudy from './components/BrewBakeCaseStudy';
 import AnkleBreakerCaseStudy from './components/AnkleBreakerCaseStudy';
@@ -19,24 +16,6 @@ const links = {
   linkedin: 'https://www.linkedin.com/in/tan-yi-han/',
   email: 'mailto:yihan551@gmail.com',
 };
-
-const skills = [
-  {
-    title: 'Game Development',
-    icon: Sparkles,
-    items: ['Unreal Engine 5', 'Unreal C++', 'Blueprints', 'Gameplay Systems', 'Tools Development', 'Gameplay UI Implementation'],
-  },
-  {
-    title: 'Programming',
-    icon: Code2,
-    items: ['C++', 'C#'],
-  },
-  {
-    title: 'Tools',
-    icon: Wrench,
-    items: ['Git', 'Perforce', 'Rider'],
-  },
-];
 
 const projects = [
   {
@@ -79,7 +58,6 @@ function App() {
         <Projects />
         <BrewBakeCaseStudy />
         <AnkleBreakerCaseStudy />
-        <Skills />
         <Experience />
         <Contact />
       </main>
@@ -93,7 +71,6 @@ function Header() {
     <header className="site-header">
       <nav aria-label="Primary navigation">
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -183,34 +160,6 @@ function ProjectCard({ project }) {
   );
 }
 
-function Skills() {
-  return (
-    <section className="section-shell" id="skills">
-      <SectionHeading
-        centered
-        label="Skills"
-        title="Practical stack for gameplay programming"
-        description="Core strengths are grouped around Unreal gameplay development, programming languages, and production tools."
-      />
-      <div className="skills-grid">
-        {skills.map(({ title, icon: Icon, items }) => (
-          <article className="skill-card" key={title}>
-            <div className="skill-title">
-              <Icon size={20} aria-hidden="true" />
-              <h3>{title}</h3>
-            </div>
-            <ul>
-              {items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Experience() {
   return (
     <section className="section-shell" id="experience">
@@ -224,6 +173,7 @@ function Experience() {
         <TerminalSquare size={22} aria-hidden="true" />
         <div>
           <h3>Unreal Engine gameplay development</h3>
+          <p className="experience-meta">Jul 2025 - Oct 2025 | Hybrid</p>
           <ul className="highlight-list compact">
             <li>Developed gameplay systems in Unreal Engine 5 using C++ and Blueprints.</li>
             <li>Built reusable tools and systems for faster iteration across gameplay features.</li>
