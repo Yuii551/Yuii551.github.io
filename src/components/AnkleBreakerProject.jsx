@@ -43,7 +43,7 @@ export default function AnkleBreakerProject() {
           </figure>
         </section>
 
-        <section className="project-section" aria-labelledby="ankle-damage-title">
+        <section className="project-section full-width-section" aria-labelledby="ankle-damage-title">
           <div className="project-copy">
             <h3 id="ankle-damage-title">Momentum and reactions</h3>
             <p>Runtime mass and velocity are converted into momentum for damage and knockback. Minimum thresholds, effective enemy mass, and clamped launch forces keep the physical result readable and controllable.</p>

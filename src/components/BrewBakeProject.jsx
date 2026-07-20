@@ -49,7 +49,7 @@ export default function BrewBakeProject() {
 
         <VideoFigure featured src="espresso-workflow.mp4" poster="brewing.webp" title="Espresso workflow" description="Grinding, tamping, machine setup, brewing, and completing an order as one continuous interaction chain." />
 
-        <section className="project-section" aria-labelledby="brew-loop-title">
+        <section className="project-section full-width-section" aria-labelledby="brew-loop-title">
           <div className="project-copy">
             <h3 id="brew-loop-title">Gameplay loop</h3>
             <p>Each day moves through preparation, service, and progression. The afternoon shift turns prepared inventory into income, which is then used for supplies and upgrades before the next day.</p>
@@ -85,7 +85,7 @@ export default function BrewBakeProject() {
           <VideoFigure src="tutorial-system.mp4" poster="tutorial.webp" title="In-game tutorial" description="Players can revisit each procedure without leaving the game." />
         </section>
 
-        <section className="project-section" aria-labelledby="brew-progression-title">
+        <section className="project-section full-width-section" aria-labelledby="brew-progression-title">
           <div className="project-copy">
             <h3 id="brew-progression-title">Progression and saving</h3>
             <p>Earnings fund lower supplier prices, better sale returns, and faster production. Inventory, upgrades, currency, and day progress are saved when the player sleeps, while player settings remain separate.</p>

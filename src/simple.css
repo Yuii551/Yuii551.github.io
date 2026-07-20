@@ -262,6 +262,8 @@ h3 {
 .project-copy { max-width: 700px; }
 .project-copy p:last-child { margin-bottom: 0; }
 
+.full-width-section > .project-copy { max-width: none; }
+
 .two-column-section {
   grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.25fr);
   gap: clamp(30px, 6vw, 72px);
