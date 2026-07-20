@@ -1,15 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  ArrowUpRight,
-  Mail,
-  Github,
-  Linkedin,
-  TerminalSquare,
-} from 'lucide-react';
-import BrewBakeCaseStudy from './components/BrewBakeCaseStudy';
-import AnkleBreakerCaseStudy from './components/AnkleBreakerCaseStudy';
-import './styles.css';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import BrewBakeCaseStudy from './components/BrewBakeProject';
+import AnkleBreakerCaseStudy from './components/AnkleBreakerProject';
+import './simple.css';
 
 const links = {
   github: 'https://github.com/Yuii551',
@@ -20,32 +14,21 @@ const links = {
 const projects = [
   {
     title: 'Brew & Bake',
-    type: 'First-person cafe simulation game',
-    engine: 'Unreal Engine 5.6',
+    description:
+      'First-person cafe simulation with baking, espresso preparation, economy, upgrades, tutorials, saving, and UI implemented in Blueprint.',
+    details: 'Unreal Engine 5.6 / Blueprint / Packaged build',
     image: '/media/brew-and-bake/brewing.webp',
-    imageAlt: 'Grinding coffee during an afternoon shift in Brew and Bake',
+    imageAlt: 'Preparing espresso during the afternoon service phase in Brew and Bake',
     href: '#brew-bake',
-    download: 'https://drive.google.com/file/d/1VRgmWxB2D9oc7y2IkwjTOTAQdxs4egLE/view?usp=drive_link',
-    tags: ['Interaction Framework', 'Baking System', 'Espresso Machine', 'Economy', 'Upgrades', 'UI'],
-    highlights: [
-      'Built modular cafe interactions for station-based gameplay loops.',
-      'Implemented production systems for baking, espresso preparation, purchases, and progression.',
-      'Created readable UI flows that support fast iteration during playtesting.',
-    ],
   },
   {
     title: 'AnkleBreaker',
-    type: 'Top-down physics arena assignment',
-    engine: 'Unreal Engine 5.6',
+    description:
+      'Three-day physics project where player movement controls a constrained flail and impact strength is calculated from momentum.',
+    details: 'Unreal Engine 5.6 / C++ and Blueprint / Editor build',
     image: '/media/anklebreaker/core-combat.webp',
     imageAlt: 'The player swinging a chained flail into pursuing enemies in AnkleBreaker',
     href: '#anklebreaker',
-    tags: ['Unreal C++', 'Chaos Physics', 'Physics Constraints', 'Momentum Damage', 'Enemy Reactions'],
-    highlights: [
-      'Built a multi-body flail controlled indirectly through player movement.',
-      'Converted runtime mass and velocity into momentum-based damage and knockback.',
-      'Applied constraints again through a motor-driven rotating hazard in Level 2.',
-    ],
   },
 ];
 
@@ -81,17 +64,14 @@ function Header() {
 function Hero() {
   return (
     <section className="hero section-shell" id="top">
-      <div className="hero-copy">
-        <p className="eyebrow">Unreal Engine Gameplay Programmer</p>
-        <h1>Yi Han</h1>
-        <p className="hero-summary">
-          Computer Science student specializing in game development and Unreal Engine gameplay programming, focused on
-          building clear, reusable gameplay systems and tools.
-        </p>
-        <div className="hero-actions" aria-label="Profile links">
-          <IconLink href={links.github} label="GitHub" icon={Github} />
-          <IconLink href={links.linkedin} label="LinkedIn" icon={Linkedin} />
-        </div>
+      <h1>Yi Han</h1>
+      <p className="hero-summary">
+        I work mainly with Unreal Engine 5, C++, and Blueprints. I enjoy building gameplay systems, figuring out how
+        their parts fit together, and turning ideas into something playable.
+      </p>
+      <div className="link-row" aria-label="Profile links">
+        <TextLink href={links.github} label="GitHub" icon={Github} />
+        <TextLink href={links.linkedin} label="LinkedIn" icon={Linkedin} />
       </div>
     </section>
   );
@@ -100,86 +80,47 @@ function Hero() {
 function Projects() {
   return (
     <section className="section-shell" id="projects">
-      <SectionHeading
-        centered
-        label="Project Showcase"
-        title="Selected gameplay programming work"
-        description="Projects focused on complete gameplay loops, reusable systems, and practical player-facing implementation."
-      />
-      <div className="project-grid">
+      <div className="section-title">
+        <h2>Projects</h2>
+      </div>
+      <div className="project-list">
         {projects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <article className="project-row" key={project.title}>
+            <a className="project-image" href={project.href} aria-label={`View ${project.title}`}>
+              <img src={project.image} alt={project.imageAlt} loading="lazy" />
+            </a>
+            <div className="project-summary">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <p className="project-details">{project.details}</p>
+              <a className="text-link" href={project.href}>
+                View project <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project }) {
-  return (
-    <article className="project-card">
-      <img src={project.image} alt={project.imageAlt || ''} loading="lazy" />
-      <div className="project-body">
-        <div className="project-heading">
-          <div>
-            <h3>{project.title}</h3>
-            <p>{project.type}</p>
-          </div>
-          <span>{project.engine}</span>
-        </div>
-        <ul className="tag-list" aria-label={`${project.title} systems`}>
-          {project.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-        {project.highlights && (
-          <ul className="highlight-list">
-            {project.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
-        )}
-        {(project.href || project.download) && (
-          <div className="project-actions">
-            {project.href && (
-              <a className="project-link" href={project.href}>
-                View case study
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            )}
-            {project.download && (
-              <a className="project-link" href={project.download} target="_blank" rel="noreferrer">
-                Download build
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </article>
-  );
-}
-
 function Experience() {
   return (
     <section className="section-shell" id="experience">
-      <SectionHeading
-        centered
-        label="Experience"
-        title="Gameplay Programming Intern"
-        description="Nimbus Games"
-      />
-      <article className="experience-panel">
-        <TerminalSquare size={22} aria-hidden="true" />
+      <div className="section-title">
+        <h2>Experience</h2>
+      </div>
+      <article className="experience-row">
         <div>
-          <h3>Unreal Engine gameplay development</h3>
-          <p className="experience-meta">Jul 2025 - Oct 2025 | Hybrid</p>
-          <ul className="highlight-list compact">
-            <li>Developed gameplay systems in Unreal Engine 5 using C++ and Blueprints.</li>
-            <li>Built reusable tools and systems for faster iteration across gameplay features.</li>
-            <li>Participated in testing workflows, feedback cycles, and implementation refinement.</li>
-          </ul>
+          <h3>Gameplay Programming Intern</h3>
+          <p>Nimbus Games</p>
         </div>
+        <p className="experience-date">Jul 2025 - Oct 2025 / Hybrid</p>
+        <ul>
+          <li>Developed gameplay systems in Unreal Engine 5 using C++ and Blueprints.</li>
+          <li>Built reusable internal tools and systems for gameplay development.</li>
+          <li>Worked through testing, feedback, and implementation iterations with the team.</li>
+        </ul>
       </article>
     </section>
   );
@@ -188,44 +129,30 @@ function Experience() {
 function Contact() {
   return (
     <section className="section-shell contact-section" id="contact">
-      <SectionHeading
-        centered
-        label="Contact"
-        title="Get in touch"
-        description="For professional inquiries, contact me by email or connect through GitHub and LinkedIn."
-      />
-      <div className="contact-links">
-        <IconLink href={links.email} label="yihan551@gmail.com" icon={Mail} external={false} />
-        <IconLink href={links.github} label="GitHub" icon={Github} />
-        <IconLink href={links.linkedin} label="LinkedIn" icon={Linkedin} />
+      <div className="section-title">
+        <h2>Contact</h2>
+      </div>
+      <p className="contact-copy">For professional inquiries, contact me by email or through LinkedIn.</p>
+      <div className="link-row contact-links">
+        <TextLink href={links.email} label="yihan551@gmail.com" icon={Mail} external={false} />
+        <TextLink href={links.github} label="GitHub" icon={Github} />
+        <TextLink href={links.linkedin} label="LinkedIn" icon={Linkedin} />
       </div>
     </section>
   );
 }
 
-function SectionHeading({ label, title, description, centered = false }) {
-  return (
-    <div className={centered ? 'section-heading centered-heading' : 'section-heading'}>
-      <p className="eyebrow">{label}</p>
-      <h2>{title}</h2>
-      <p>{description}</p>
-    </div>
-  );
-}
-
-function IconLink({ href, label, icon: Icon, external = true }) {
+function TextLink({ href, label, icon: Icon, external = true }) {
   return (
     <a
-      className="icon-link"
+      className="text-link"
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer' : undefined}
-      aria-label={label}
-      title={label}
     >
-      <Icon size={19} aria-hidden="true" />
-      <span>{label}</span>
-      <ArrowUpRight size={15} aria-hidden="true" />
+      <Icon size={17} aria-hidden="true" />
+      {label}
+      <ArrowUpRight size={14} aria-hidden="true" />
     </a>
   );
 }
@@ -233,7 +160,7 @@ function IconLink({ href, label, icon: Icon, external = true }) {
 function Footer() {
   return (
     <footer>
-      <p>Yi Han | Gameplay Programmer</p>
+      <p>Yi Han / Gameplay Programmer</p>
     </footer>
   );
 }
